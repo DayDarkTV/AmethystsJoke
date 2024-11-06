@@ -44,6 +44,7 @@ public class DailyCommand {
             int hours = mins/60;
             mins -= hours*60;
             source.sendError(Text.literal(hours + " hours, " + mins + " minutes, and " + sec + " seconds left until you can use this command!"));
+            source.sendError(Text.literal("Come back tomorrow!"));
             return 0;
         }
 
