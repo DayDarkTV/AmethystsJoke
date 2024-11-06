@@ -5,11 +5,11 @@
 	"name": "Amethyst's Joke",
 	"description": "This is an example description! Tell everyone what your mod is about!",
 	"authors": [
-		"Me!"
+		"daydarktv"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"homepage": "https://daydarktv.github.io/",
+		"sources": "https://github.com/DayDarkTV/AmethystsJoke"
 	},
 	"license": "CC0-1.0",
 	"icon": "assets/amethysts-joke/icon.png",
