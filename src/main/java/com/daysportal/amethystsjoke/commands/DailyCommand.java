@@ -3,27 +3,50 @@ package com.daysportal.amethystsjoke.commands;
 import com.daysportal.amethystsjoke.luckyblocks.LuckyBlockItems;
 import com.mojang.brigadier.CommandDispatcher;
 import net.minecraft.entity.ItemEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
+import net.minecraft.scoreboard.Scoreboard;
+import net.minecraft.scoreboard.ScoreboardCriterion;
+import net.minecraft.scoreboard.ScoreboardObjective;
+import net.minecraft.scoreboard.ScoreboardPlayerScore;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.text.Text;
+
+import java.util.Date;
 
 public class DailyCommand {
-    public static final Item LuckyItem = Items.DIRT;
 
     public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
         dispatcher.register(
                 CommandManager.literal("daily")
-                        .executes(context -> execute(context.getSource().getPlayerOrThrow()))
+                        .executes(context -> execute(context.getSource(), context.getSource().getPlayerOrThrow()))
         );
     }
     
-    public static int execute(ServerPlayerEntity player) {
+    public static int execute(ServerCommandSource source, ServerPlayerEntity player) {
+        Scoreboard board = player.getScoreboard();
+        if (!board.containsObjective("dailycooldown"))
+            board.addObjective("dailycooldown", ScoreboardCriterion.DUMMY, Text.of("Daily Cooldown"), ScoreboardCriterion.RenderType.INTEGER);
+        ScoreboardObjective objective = board.getObjective("dailycooldown");
+        ScoreboardPlayerScore score = board.getPlayerScore(player.getGameProfile().getName(), objective);
+        if (score.getScore() == 0) score.setScore(-1152000);
+//        score.setScore(player.age);
+        Date now = new Date();
+        int currentTick = (int) (now.getTime()/50);
+        if (currentTick - score.getScore() < 1152000) {
+            int ticks = 1152000- (currentTick - score.getScore());
+            int sec = ticks/20;
+            int mins = sec/60;
+            sec -= mins*60;
+            int hours = mins/60;
+            mins -= hours*60;
+            source.sendError(Text.literal(hours + " hours, " + mins + " minutes, and " + sec + " seconds left until you can use this command!"));
+            return 0;
+        }
+
 
         int give_count;
         float ran = player.getRandom().nextFloat();
@@ -57,6 +80,7 @@ public class DailyCommand {
                 }
             }
         }
+        score.setScore(currentTick);
         return give_count;
     }
 }
