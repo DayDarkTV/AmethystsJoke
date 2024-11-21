@@ -3,14 +3,10 @@
   "package": "com.daysportal.amethystsjoke.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "CommandBlockMixin",
+    "BlocksMixin",
     "PlayerEntityMixin",
-    "ServerPlayerInteractionManagerMixin"
   ],
   "injectors": {
     "defaultRequire": 1
-  },
-  "client": [
-    "ClientPlayerInteractionManagerMixin"
-  ]
+  }
 }
