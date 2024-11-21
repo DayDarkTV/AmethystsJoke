@@ -27,13 +27,13 @@ public class DailyCommand {
     }
     
     public static int execute(ServerCommandSource source, ServerPlayerEntity player) {
+        // Please Excuse The Jank
         Scoreboard board = player.getScoreboard();
         if (!board.containsObjective("dailycooldown"))
             board.addObjective("dailycooldown", ScoreboardCriterion.DUMMY, Text.of("Daily Cooldown"), ScoreboardCriterion.RenderType.INTEGER);
         ScoreboardObjective objective = board.getObjective("dailycooldown");
         ScoreboardPlayerScore score = board.getPlayerScore(player.getGameProfile().getName(), objective);
         if (score.getScore() == 0) score.setScore(-1152000);
-//        score.setScore(player.age);
         Date now = new Date();
         int currentTick = (int) (now.getTime()/50);
         if (currentTick - score.getScore() < 1152000) {

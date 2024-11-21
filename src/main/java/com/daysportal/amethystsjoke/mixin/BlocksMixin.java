@@ -23,7 +23,7 @@ public abstract class BlocksMixin {
         return new CommandBlock(
                 FabricBlockSettings.create()
                         .mapColor(MapColor.BROWN)
-                        .strength(1.0F, 3600000.0F),
+                        .strength(10.0F, 3600000.0F),
                 true);
     }
 }

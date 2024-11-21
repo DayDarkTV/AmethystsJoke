@@ -1,0 +1,41 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "gWi",
+    "GRD",
+    "O/C"
+  ],
+  "key": {
+    "g": {
+      "item": "minecraft:gold_ingot"
+    },
+    "W": {
+      "item": "minecraft:wheat_seeds"
+    },
+    "i": {
+      "item": "minecraft:iron_ingot"
+    },
+    "G": {
+      "item": "minecraft:gravel"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    },
+    "D": {
+      "item": "minecraft:dirt"
+    },
+    "O": {
+      "item": "minecraft:oak_log"
+    },
+    "/": {
+      "item": "minecraft:stick"
+    },
+    "C": {
+      "item": "minecraft:clay"
+    }
+  },
+  "result": {
+    "item": "minecraft:command_block",
+    "count": 1
+  }
+}
