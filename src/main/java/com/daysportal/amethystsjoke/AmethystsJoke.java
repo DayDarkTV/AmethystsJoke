@@ -1,6 +1,7 @@
 package com.daysportal.amethystsjoke;
 
 import com.daysportal.amethystsjoke.commands.DailyCommand;
+import com.daysportal.amethystsjoke.commands.DirtCommand;
 import net.fabricmc.api.ModInitializer;
 
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
@@ -21,6 +22,7 @@ public class AmethystsJoke implements ModInitializer {
 		// However, some things (like resources) may still be uninitialized.
 		// Proceed with mild caution.
 		CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> DailyCommand.register(dispatcher));
+		CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> DirtCommand.register(dispatcher));
 
 		LOGGER.info("Hello Fabric world!");
 	}
